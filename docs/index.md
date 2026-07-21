@@ -110,6 +110,16 @@ and error analysis across different value ranges of the target.
 This would help determine where predictions are less reliable
 and guide the next set of improvements.
 
+### Bonus Exploration
+
+For bonus work, I applied the same regression workflow to the seaborn diamonds dataset
+with `price` as the target.
+Among the compared models, Ridge on the full encoded feature set performed best by RMSE
+(about 1137.58), while linear regression had nearly identical performance and the best MAE
+(about 750.84).
+This suggests that combining geometry and quality features is more important than using
+polynomial terms on a single feature, and that light regularization can improve stability.
+
 ### Summary
 
 Summarize your custom project.
