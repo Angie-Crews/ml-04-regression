@@ -90,6 +90,26 @@ Include:
 - Whether the result was useful, interesting, surprising, or disappointing
 - Any weakness, limitation, or next improvement
 
+### Improvements and Future Work
+
+This project used linear regression as a clear baseline model.
+In a future iteration, I would compare this baseline with at least one
+additional regression approach, such as Ridge regression,
+Random Forest Regressor, or Gradient Boosting Regressor,
+to test whether nonlinear patterns or regularization improve performance.
+
+I would also run a more systematic feature review,
+including correlation checks and engineered features,
+to evaluate whether transformed or interaction terms add predictive value.
+For model selection, I would use repeated train/test splits or cross-validation
+and then tune key hyperparameters.
+
+Beyond model fit,
+I would add stronger diagnostics such as residual plots
+and error analysis across different value ranges of the target.
+This would help determine where predictions are less reliable
+and guide the next set of improvements.
+
 ### Summary
 
 Summarize your custom project.
