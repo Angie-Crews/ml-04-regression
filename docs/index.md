@@ -21,74 +21,96 @@ to get the example projects running on your machine.
 
 ## Phase 4. Technical Modification
 
-Describe your small technical modification to the example project.
+I made a focused technical modification in `src/mlstudio/app_angie_crews.py`.
 
-Include:
+### What I changed
 
-- What you changed
-- Why you chose that change
-- How you verified that it worked
-- What result, output, chart, metric, or behavior confirmed the change
+- Added RMSE logging in `train_model()` so the app reports three regression metrics:
+	MAE, RMSE, and R-squared.
+- Updated the header run command to match my copied module:
+	`uv run python -m mlstudio.app_angie_crews`.
 
-Compared with the example project,
-explain what is different and why the change matters.
+### Why I chose this change
 
-Was it easy, or surprisingly challenging and why do you think so?
+RMSE is a standard regression metric and complements MAE by penalizing larger errors more strongly.
+Adding RMSE made the evaluation step more complete while keeping the change small and safe.
+
+### How I verified it
+
+- Ran `uv run python -m mlstudio.app_angie_crews` from the project root.
+- Confirmed successful completion in terminal logs.
+- Confirmed the new metric appears in output.
+
+### Confirming result
+
+Terminal output included:
+
+- `Mean absolute error: 0.48`
+- `Root mean squared error: 0.53`
+- `R-squared: 1.00`
+- `Executed successfully!`
+
+Compared with the example app, my version now reports one additional evaluation metric (RMSE).
+I rated this change as moderate: the code edit was simple, but I had to resolve a scikit-learn compatibility issue
+by computing RMSE as `sqrt(MSE)`.
 
 ## Phase 5. Custom Project
 
-Describe your custom project and how you made your modeling decisions.
-
-Be specific about what changed from the example project.
+My custom project applies the module regression workflow to a custom notebook path and narrative,
+using the same supervised-learning structure with project-specific documentation and commands.
+I kept the project scoped and reliable: a smaller project completed end-to-end and validated by reruns.
 
 ### Basis and Data
 
-Describe the dataset, input, or example you started with.
+I started from the module's example regression workflow and used the provided project datasets/notebooks.
+For the app workflow, the dataset is `data/raw/hours_scores_case.csv`.
+I kept this basis to prioritize correctness, reproducibility, and safe modification under the project rubric.
 
-Include:
+Important assumptions and limits:
 
-- The original example dataset or input
-- The data source
-- Why you chose it, kept it, or changed it
-- Any important limitations or assumptions
+- Small sample size means metrics may look optimistic.
+- Linear relationships are assumed by the baseline model.
+- Results are educational and workflow-focused, not production-calibrated.
 
 ### Modeling Approach
 
-Describe the problem type and modeling approach for this project.
-
-Include:
-
-- Is this supervised or unsupervised and how do you know
-- Is this classification, regression, clustering, recommendation, forecasting, or another type of ML task
-- What kind of target works well for this approach
-- Why your selected model or method is appropriate
+This is supervised learning because the target variable is known during training.
+It is a regression problem because the target is numeric.
+I used linear regression as a clear, interpretable baseline appropriate for a first-pass model
+with numeric features and straightforward evaluation.
 
 ### Target
 
-Describe the example target variable.
-
-Then describe your chosen target variable.
-
-Explain how your target choice changes the modeling approach, interpretation, or evaluation.
+In the app workflow, the target is `score`.
+Because the target is continuous, evaluation uses regression metrics (MAE, RMSE, R-squared)
+rather than classification metrics like accuracy or F1.
 
 ### Features
 
-Describe the example features.
+Features used to predict `score` are:
 
-Then describe the features you used to predict your target.
+- `hours_studied`
+- `practice_quizzes`
+- `attendance_pct`
+- `sleep_hours`
+- `prior_score`
 
-Explain what you changed, added, removed, or kept and why.
+I kept the provided feature set to establish a stable baseline,
+then focused customization on evaluation/reporting and documentation quality.
 
 ### Evaluation and Results
 
-Describe how you evaluated your model.
+I evaluated the model using MAE, RMSE, and R-squared on a holdout split (`test_size=0.30`, `random_state=42`).
 
-Include:
+Main result from the verified run:
 
-- The metric or evidence you used
-- The main result
-- Whether the result was useful, interesting, surprising, or disappointing
-- Any weakness, limitation, or next improvement
+- MAE = 0.48
+- RMSE = 0.53
+- R-squared = 1.00
+
+This is useful because the workflow now provides a fuller error profile.
+The very strong fit is interesting but likely inflated by the small dataset,
+so this should be interpreted as a workflow demonstration.
 
 ### Improvements and Future Work
 
@@ -122,14 +144,16 @@ polynomial terms on a single feature, and that light regularization can improve 
 
 ### Summary
 
-Summarize your custom project.
+I implemented a custom, safe extension of the example regression project by creating my own app/notebook copies,
+updating authorship and links, adding RMSE as an evaluation metric, and validating the full run pipeline.
 
-Include:
+I learned how to make targeted code changes without breaking a working baseline,
+how to verify behavior with logs, and how to document technical decisions clearly.
+These skills transfer directly to real projects where careful incremental changes,
+reproducible commands, and evidence-backed results are essential.
 
-- How you implemented your custom model
-- What results you got
-- What you learned
-- How well you exercised the skills covered in this project
-- What kinds of real problems you could apply these skills to in the future
+Evidence artifacts in this repo include:
 
-Display at least one image or screenshot showing your work.
+- `project.log` with successful run output
+- executed notebook outputs in `notebooks/`
+- comparison images in `notebooks/` (`dataset1_comparison.png`, `dataset2_comparison.png`, `dataset3_comparison.png`)

@@ -26,7 +26,8 @@ See [docs/your-files.md] for more.
 
 Links:
 
-- [ml_04_case.ipynb](notebooks/ml_04_case.ipynb)
+- [ml_04_regression_angie_crews.ipynb](notebooks/ml_04_regression_angie_crews.ipynb)
+- [ml04_angie_crews.ipynb](notebooks/ml04_angie_crews.ipynb)
 
 ## Working Files
 
@@ -112,6 +113,9 @@ uvx pre-commit run --all-files
 
 # run the example module to verify the environment (.venv/)
 uv run python -m mlstudio.app_case
+
+# run your custom module copy
+uv run python -m mlstudio.app_angie_crews
 
 # run common chores
 uv run ruff format .
